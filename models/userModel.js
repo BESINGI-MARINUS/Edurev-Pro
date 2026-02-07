@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
     validate: {
       validator: function (v) {
-        return /^(LMUI-?\d+[A-Z]+[0-9]+|LMU\d+[A-Z]+[0-9]+)$/.test(v);
+        return /^(LMUI-?\d+[A-Z]+[0-9]+|LMU-\d+[A-Z]+[0-9]+)$/.test(v);
       },
       message: "Invalid Matricule.",
     },
@@ -45,6 +45,13 @@ userSchema.pre("save", async function (next) {
 
   this.matricule = await bcrypt.hash(this.matricule, 12);
 });
+
+userSchema.methods.correctMatricule = async function (
+  enteredMatricule,
+  userMatricule,
+) {
+  return await bcrypt.compare(enteredMatricule, userMatricule);
+};
 
 const User = mongoose.model("user", userSchema);
 

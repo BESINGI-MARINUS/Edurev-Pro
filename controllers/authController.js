@@ -1,5 +1,4 @@
 const User = require("../models/userModel");
-const bcrypt = require("bcryptjs");
 
 exports.signup = async (req, res) => {
   const { name, email, matricule } = req.body;
@@ -17,7 +16,7 @@ exports.login = async (req, res) => {
 
   const user = await User.findOne({ email }).select("+matricule");
 
-  if (!user || !(await bcrypt.compare(matricule, user.matricule))) {
+  if (!user || !(await user.correctMatricule(matricule, user.matricule))) {
     return res.status(401).json({
       status: "fail",
       message: "Incorrect email or matricule!",

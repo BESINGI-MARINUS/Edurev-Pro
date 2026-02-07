@@ -1,0 +1,36 @@
+{
+  "name": "edurev-pro",
+  "version": "1.0.0",
+  "description": "Edurev pro api",
+  "homepage": "https://github.com/BESINGI-MARINUS/Edurev-Pro#readme",
+  "bugs": {
+    "url": "https://github.com/BESINGI-MARINUS/Edurev-Pro/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BESINGI-MARINUS/Edurev-Pro.git"
+  },
+  "license": "ISC",
+  "author": "Besingi Marinus",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.4",
+    "express": "^5.2.1",
+    "mongoose": "^9.1.6"
+  },
+  "devDependencies": {
+    "prettier": "^3.8.1",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-react": "^7.37.4"
+  }
+}

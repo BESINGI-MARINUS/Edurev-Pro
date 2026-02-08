@@ -1,15 +1,15 @@
-const dotenv = require("dotenv");
-const mongoose = require("mongoose");
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
 
-dotenv.config({ path: "./config.env" });
+dotenv.config({ path: './config.env' });
 
-const app = require("./app");
+const app = require('./app');
 
-const DB = process.env.DB.replace("<PASSWORD>", process.env.DB_PASSWORD);
+const DB = process.env.DB.replace('<PASSWORD>', process.env.DB_PASSWORD);
 
 async function main() {
   await mongoose.connect(DB);
-  console.log("DB Connected Successfully");
+  console.log('DB Connected Successfully');
 }
 
 main().catch((err) => console.log(err));

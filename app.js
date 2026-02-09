@@ -3,6 +3,8 @@ const express = require('express');
 const cors = require('cors');
 
 const userRoutes = require('./Routes/userRoutes');
+const globalErrorHandler = require('./utils/globalErrorHandler');
+const AppError = require('./utils/AppError');
 
 const app = express();
 
@@ -16,16 +18,8 @@ app.use(express.json());
 // ROUTES
 app.use('/api/v1/users', userRoutes);
 app.use((req, res, next) => {
-  res.status(404).json({
-    status: 'fail',
-    message: `Can't find ${req.originalUrl} on this server!`,
-  });
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 
-app.use((err, req, res, next) => {
-  err.statusCode = err.status || 500;
-  err.status = err.status || 'error';
-
-  next(err);
-});
+app.use(globalErrorHandler);
 module.exports = app;

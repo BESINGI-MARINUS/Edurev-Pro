@@ -1,0 +1,43 @@
+erDiagram
+    STUDENT ||--o{ EXAM_ATTEMPT : performs
+    COURSE ||--o{ EXAM_ATTEMPT : categorizes
+    EXAM_ATTEMPT ||--|{ SECTION_SCORE : contains
+    STUDENT ||--o{ RECOMMENDATION : receives
+
+    STUDENT {
+        string id PK
+        string matricule UK
+        string name
+        string department
+        string level
+    }
+
+    COURSE {
+        string id PK
+        string course_code UK
+        string title
+        int credit_value
+    }
+
+    EXAM_ATTEMPT {
+        string id PK
+        string student_id FK
+        string course_id FK
+        string exam_type
+        float total_score
+        date date_taken
+    }
+
+    SECTION_SCORE {
+        string section_name
+        float score_obtained
+        float max_possible
+    }
+
+    RECOMMENDATION {
+        string id PK
+        string student_id FK
+        string insight_type
+        text message
+        string priority
+    }

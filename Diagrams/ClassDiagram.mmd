@@ -1,0 +1,35 @@
+```mermaid
+classDiagram
+    class Student {
+        +String matricule
+        +String department
+        +getPerformanceHistory()
+        +getRiskProfile()
+    }
+
+    class ExamAttempt {
+        +ObjectId student_id
+        +ObjectId course_id
+        +Enum examType
+        +Array sectionScores
+        +calculateTotal()
+    }
+
+    class PredictionEngine {
+        +Model trainedModel
+        +generatePrediction(studentId)
+        +identifyWeakSections(attemptId)
+        +triggerAlerts()
+    }
+
+    class Recommendation {
+        +String message
+        +Date createdAt
+        +applyToStudent()
+    }
+
+    Student "1" --> "*" ExamAttempt : has
+    ExamAttempt "*" --> "1" PredictionEngine : processed by
+    PredictionEngine --> "1" Recommendation : creates
+    Recommendation "*" --> "1" Student : assigned to
+```

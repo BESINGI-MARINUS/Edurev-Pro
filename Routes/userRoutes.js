@@ -7,19 +7,14 @@ const router = express.Router();
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
 
+router.use(authController.protect);
 router
   .route('/')
-  .get(
-    authController.protect,
-    authController.restrictTo('admin'),
-    userController.getAllUsers,
-  ); //authController.protect,
+  .get(authController.restrictTo('admin'), userController.getAllUsers)
+  .post(authController.restrictTo('admin'), userController.createLecturer);
+
 router
   .route('/:id')
-  .get(
-    authController.protect,
-    authController.restrictTo('admin'),
-    userController.getUser,
-  );
+  .get(authController.restrictTo('admin'), userController.getUser);
 
 module.exports = router;
